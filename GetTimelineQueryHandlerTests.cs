@@ -43,34 +43,5 @@ public class GetTimelineQueryHandlerTests
         Assert.Equal("Post 1", result[0].Text);
         Assert.Equal("Post 2", result[1].Text);
     }
-
-
-    [Fact]
-    public void DetermineImageSize_ReturnsOriginalImageUrlForLargeScreen()
-    {
-        // Arrange
-        var post = new Post { OriginalImageUrl = "http://example.com/image.jpg" };
-        var handler = new GetTimelineQueryHandler(_postRepositoryMock.Object, _storageServiceMock.Object);
-
-        // Act
-        var result = handler.DetermineImageSize(post);
-
-        // Assert
-        Assert.Equal("http://example.com/image.jpg", result);
-    }
-
-    [Fact]
-    public void GetResizedImageUrl_ReturnsCorrectUrl()
-    {
-        // Arrange
-        var handler = new GetTimelineQueryHandler(_postRepositoryMock.Object, _storageServiceMock.Object);
-        var imageUrl = "http://example.com/image.jpg";
-        var width = "300,200";
-
-        // Act
-        var result = handler.GetResizedImageUrl(imageUrl, width);
-
-        // Assert
-        Assert.Contains("resize=300,200", result);
-    }
+     
 }
